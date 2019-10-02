@@ -1,0 +1,18 @@
+language: python
+python:
+- '3.6'
+# before_script:
+# - psql -c "CREATE DATABASE travisdb;" -U postgres
+script:
+#- cd dbbus/
+- python manage.py test
+env:
+  matrix:
+  - DJANGO=2.2.3 DB=sqlite
+
+before_install:
+- export DJANGO_SETTINGS_MODULE=backend.settings
+- export PYTHONPATH=$HOME/builds/mofiebiger/phorest-techtest-mo-fiebiger
+- export PIP_USE_MIRRORS=true
+install:
+- pip install -r requirements.txt
