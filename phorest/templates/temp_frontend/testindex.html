@@ -21,99 +21,100 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <h3>Pick Search Criteria</h3>
-      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
+      <h3>Pick</h3>
+      <p>Choose a search category</p>
+      <br>
 
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#" id="fname">First Name</a></li>
-          <li class="divider"></li>
-          <li><a href="#" id="lname">Last Name</a></li>
-          <li class="divider"></li>
-          <li><a href="#" id="fandlname">First & Last Name</a></li>
-          <li class="divider"></li>
-          <li><a href="#" id="email">Email</a></li>
-          <li class="divider"></li>
-          <li><a href="#" id="phone">Phone Number</a></li>
-        </ul>
+        <select class="dropdown-content" id="dropdown">
+        <option value="firstName">First Name</option>
+        <option value="lastName">Last Name</option>
+        <option value="email">Email</option>
+        <option value="mobile">Phone Number</option>
+        </select>
       </div>
     </div>
+
     <div class="col-sm-4">
-      <h3>Insert Client Information</h3>
-      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
+      <h3>Insert</h3>
+      <p>Type in a the client's first name, last name,</p>
+      <p>email or mobile phone number</p>
       <div class="form-group">
   <input type="text" class="form-control" id="usr">
 </div>
     </div>
     <div class="col-sm-4">
       <h3>Go!</h3>
-      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
-      <button type="button" class="btn btn-primary btn-lg" onclick="dynamic()">Search</button>
+      <p>Click search to see your results</p>
+      <bk>
+      <button type="button" class="btn btn-primary btn-lg" onclick="searchSelection()">Search</button>
     </div>
   </div>
 </div>
 <p id="demo"></p>
 <table class="table table-bordered table-striped" id="clientTable">
   <div class="footer">
-  <p>Made with love by: Mo</p>
+  <p>Made with &hearts; by Mo</p>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Voucher Information</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 <script>
 
-function searchSelection(){
-  switch(id){
-    case "fname":
-      break;
-    case "lname":
-      break;
-    case "fandlname":
-      break;
-    case "email":
-      break;
-    case "phone":
-      break;
-    }
-    var selection = document.getElementById('id');
-    var value = selection.options[selection.selectedIndex].value;
-  }
-  // var selctFName = document.getElementById('fname');
-  // var fNameValue = selctFName.options[selctFName.selectedIndex].value;
-  //
-  // var selectLName = document.getElementById('lname');
-  // var lNameValue = selctLName.options[selctLName.selectedIndex].value;
-  //
-  // var selectFandLName = document.getElementById('fandlname');
-  // var fandLNameValue = selectFandLName.options[selectFandLName.selectedIndex].value;
-  //
-  // var selectEmail = document.getElementById('email');
-  // var emailValue = selectEmail.options[selectEmail.selectedIndex].value;
-  //
-  // var selectPhone = document.getElementById('phone');
-  // var phoneValue = selectPhone.options[selectPhone.selectedIndex].value;
 
-function dynamic(){
-  switch(id){
-    case "fname":
-      break;
-    case "lname":
-      break;
-    case "email":
-      break;
-    case "phone":
-      break;
-    }
-    var selection = document.getElementById('id');
-    var value = selection.options[selection.selectedIndex].value;
-  }
-  var textValue = document.getElementById("usr").value;
-  var catValue = "firstName";
+
+function dropdownSelection(){
+  //var x = document.getElementById("dropdown").value;
+  //document.getElementById("demo").innerHTML = x;
+    // var categoryValue = document.getElementById("dropdown").value;
+    // var selectFName = document.getElementById('fname');
+    // var selectLName = document.getElementById('lname');
+    // var selectEmail = document.getElementById('email');
+    // var selectPhone = document.getElementById('phone');
+
+    // if (categoryValue == "firstName"){
+    //     return categoryValue = "firstName";
+    //     console.log(categoryValue);
+    // }
+    // else if (selectLName) {
+    //   categoryValue = selectLName.options[selectLName.selectedIndex].value;
+    // }
+    // else if (selectEmail) {
+    //   categoryValue = selectEmail.options[selectEmail.selectedIndex].value;
+    // }
+    // else if (selectPhone) {
+    //   categoryValue = selectPhone.options[selectPhone.selectedIndex].value;
+    // }
+    //console.log(categoryValue);
+}
+
+function searchSelection(){
+  var Selected = document.getElementById("dropdown");
+  var Value = Selected.options[Selected.selectedIndex].value;
+console.log(Value);
+var textValue = document.getElementById("usr").value;
+console.log(textValue);
 $.ajax({
           'async': 'true',
-          'url': "https://api-gateway-dev.phorest.com/third-party-api-server/api/business/x/client?" + catValue + "=" + textValue + "&page=0&size=20",
+          'url': "https://api-gateway-dev.phorest.com/third-party-api-server/api/business/eTC3QY5W3p_HmGHezKfxJw/client?" + Value + "=" + textValue + "&page=0&size=20",
           'type': 'get',
           'headers':  {
                 "Authorization": "Basic " + "Z2xvYmFsL2Nsb3VkQGFwaWV4YW1wbGVzLmNvbTpWTWxSby9laCtYZDhNfmw="
@@ -121,8 +122,14 @@ $.ajax({
           'dataType': 'json',
 
       }).done(function (result) {
-        object = result._embedded;
-        console.log(object);
+        var stringified = JSON.stringify(result);
+        var parsedObj = JSON.parse(stringified);
+        var availableClients = false;
+
+        console.log(parsedObj);
+        var object = parsedObj._embedded;
+        var clients = object.clients;
+
         var clientTable = '<table>';
             clientTable += '<table class="table table-bordered table-striped">';
             clientTable += '<thead>'
@@ -131,14 +138,34 @@ $.ajax({
             clientTable += '<th>Last Name</th>'
             clientTable += '<th>Email</th>'
             clientTable += '<th>Phone</th>'
-            clientTable += '<th></th>'
+            clientTable += '<th>Voucher</th>'
             clientTable += '</tr>'
             clientTable += '</thead>'
-          document.getElementById("clientTable").innerHTML = clientTable;
 
-})
+        for (var i = 0; i < clients.length; i++){
+            var fName = clients[i].firstName;
+            var lName = clients[i].lastName;
+            var email = clients[i].email;
+            var phone = clients[i].mobile;
+
+            if(textValue == fName || textValue == lName || textValue == email || textValue == phone){
+                availableClients = true;
+                clientTable += '<tr><td>' + fName + '</td><td>' + lName + '</td>';
+                clientTable += '<td>' + email + '</td><td>' + phone + '</td>';
+                clientTable += '<td><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Select</button></td></tr>';
+                clientTable += '</tbody></table>'
+            }
+        }
+        if (!availableClients) {
+            document.getElementById("demo").innerHTML = "No clients with this criteria. Try again";
+        }
+        else {
+
+            document.getElementById("clientTable").innerHTML = clientTable;
+        }
+    })
 }
-dynamic();
+searchSelection();
 </script>
 
 

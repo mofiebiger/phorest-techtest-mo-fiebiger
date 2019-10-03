@@ -86,7 +86,13 @@ $(document).ready(function(){
             'dataType': 'json',
         }).done(function (result) {
           object = result._embedded;
-          console.log(object);
+          //console.log(object);
+          for(var i = 0; i < object.lenth; i++){
+            object2 = object[i].firstName;
+
+            console.log(object2);
+
+          }
 
 
           var clientTable = '<table>';

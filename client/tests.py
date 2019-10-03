@@ -2,7 +2,7 @@ from django.test import TestCase
 
 class DublinBusUnitTests(TestCase):
 
-    # Setting up first "Dummy" test
+    # Setting up first foo test
     # Doing this to ensure Travis is set up correctly
 
     def test_upper(self):

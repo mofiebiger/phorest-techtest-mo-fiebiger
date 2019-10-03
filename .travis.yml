@@ -1,8 +1,7 @@
 language: python
 python:
 - '3.7.4'
-# before_script:
-# - psql -c "CREATE DATABASE travisdb;" -U postgres
+
 script:
 #- cd dbbus/
 - python manage.py test
