@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Phorest - Client Search Engine</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "./style.css" />
+</head>
+
+<body>
+
+<div class="jumbotron text-center warning text-dark">
+  <h1><img src="./phorest.png" alt="phorest"></h1>
+  <p size="26px;">Official Client Search Engine</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Pick Search Criteria</h3>
+      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
+
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#" id="fname">First Name</a></li>
+          <li class="divider"></li>
+          <li><a href="#" id="lname">Last Name</a></li>
+          <li class="divider"></li>
+          <li><a href="#" id="fandlname">First & Last Name</a></li>
+          <li class="divider"></li>
+          <li><a href="#" id="email">Email</a></li>
+          <li class="divider"></li>
+          <li><a href="#" id="phone">Phone Number</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <h3>Insert Client Information</h3>
+      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
+      <div class="form-group">
+  <input type="text" class="form-control" id="usr">
+</div>
+    </div>
+    <div class="col-sm-4">
+      <h3>Go!</h3>
+      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
+      <button type="button" class="btn btn-primary btn-lg" onclick="dynamic()">Search</button>
+    </div>
+  </div>
+</div>
+<p id="demo"></p>
+<table class="table table-bordered table-striped" id="clientTable">
+  <div class="footer">
+  <p>Made with love by: Mo</p>
+</div>
+<script>
+
+function searchSelection(){
+  switch(id){
+    case "fname":
+      break;
+    case "lname":
+      break;
+    case "fandlname":
+      break;
+    case "email":
+      break;
+    case "phone":
+      break;
+    }
+    var selection = document.getElementById('id');
+    var value = selection.options[selection.selectedIndex].value;
+  }
+  // var selctFName = document.getElementById('fname');
+  // var fNameValue = selctFName.options[selctFName.selectedIndex].value;
+  //
+  // var selectLName = document.getElementById('lname');
+  // var lNameValue = selctLName.options[selctLName.selectedIndex].value;
+  //
+  // var selectFandLName = document.getElementById('fandlname');
+  // var fandLNameValue = selectFandLName.options[selectFandLName.selectedIndex].value;
+  //
+  // var selectEmail = document.getElementById('email');
+  // var emailValue = selectEmail.options[selectEmail.selectedIndex].value;
+  //
+  // var selectPhone = document.getElementById('phone');
+  // var phoneValue = selectPhone.options[selectPhone.selectedIndex].value;
+
+function dynamic(){
+  switch(id){
+    case "fname":
+      break;
+    case "lname":
+      break;
+    case "email":
+      break;
+    case "phone":
+      break;
+    }
+    var selection = document.getElementById('id');
+    var value = selection.options[selection.selectedIndex].value;
+  }
+  var textValue = document.getElementById("usr").value;
+  var catValue = "firstName";
+$.ajax({
+          'async': 'true',
+          'url': "https://api-gateway-dev.phorest.com/third-party-api-server/api/business/x/client?" + catValue + "=" + textValue + "&page=0&size=20",
+          'type': 'get',
+          'headers':  {
+                "Authorization": "Basic " + "Z2xvYmFsL2Nsb3VkQGFwaWV4YW1wbGVzLmNvbTpWTWxSby9laCtYZDhNfmw="
+          },
+          'dataType': 'json',
+
+      }).done(function (result) {
+        object = result._embedded;
+        console.log(object);
+        var clientTable = '<table>';
+            clientTable += '<table class="table table-bordered table-striped">';
+            clientTable += '<thead>'
+            clientTable += '<tr>'
+            clientTable += '<th>First Name</th>'
+            clientTable += '<th>Last Name</th>'
+            clientTable += '<th>Email</th>'
+            clientTable += '<th>Phone</th>'
+            clientTable += '<th></th>'
+            clientTable += '</tr>'
+            clientTable += '</thead>'
+          document.getElementById("clientTable").innerHTML = clientTable;
+
+})
+}
+dynamic();
+</script>
+
+
+
+
+</body>
+</html>

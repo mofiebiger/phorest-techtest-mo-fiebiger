@@ -1,0 +1,48 @@
+.jumbotron {
+  background-color: #a165cf;
+}
+
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #a165cf;
+  border-color: grey;
+  height: 50px;
+  width: 100px;
+}
+
+h3 {
+  font-size: 26px;
+  padding-bottom: 30px;
+}
+
+.col-sm-4 {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.table table-hover {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-control {
+  height: 50px;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #a165cf;
+   color: white;
+   text-align: center;
