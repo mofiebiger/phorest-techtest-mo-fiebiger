@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-
+{% load staticfiles %}
 <head>
-  <title>Phorest - Client Search Engine</title>
+  <title>Phorest - Official Client Search Engine</title>
+
+  <!-- Inporting Bootstrap, Jquery/Ajax  and external stylesheet. -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link rel = "stylesheet" type = "text/css" href = "./style.css" />
+  <link rel = "stylesheet" type = "text/css" href = "{% static 'css/style.css' %}"/>
 </head>
 
 <body>
 
 <div class="jumbotron text-center warning text-dark">
-  <h1><img src="./phorest.png" alt="phorest"></h1>
+  <h1><img src="{% static 'assets/phorest.png' %}" alt="phorest"></h1>
   <p size="26px;">Official Client Search Engine</p>
 </div>
 
@@ -68,7 +70,7 @@
         <h4 class="modal-title">Voucher Information</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <p>vouchers rock - the more the merrier!!!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -78,33 +80,6 @@
   </div>
 </div>
 <script>
-
-
-
-function dropdownSelection(){
-  //var x = document.getElementById("dropdown").value;
-  //document.getElementById("demo").innerHTML = x;
-    // var categoryValue = document.getElementById("dropdown").value;
-    // var selectFName = document.getElementById('fname');
-    // var selectLName = document.getElementById('lname');
-    // var selectEmail = document.getElementById('email');
-    // var selectPhone = document.getElementById('phone');
-
-    // if (categoryValue == "firstName"){
-    //     return categoryValue = "firstName";
-    //     console.log(categoryValue);
-    // }
-    // else if (selectLName) {
-    //   categoryValue = selectLName.options[selectLName.selectedIndex].value;
-    // }
-    // else if (selectEmail) {
-    //   categoryValue = selectEmail.options[selectEmail.selectedIndex].value;
-    // }
-    // else if (selectPhone) {
-    //   categoryValue = selectPhone.options[selectPhone.selectedIndex].value;
-    // }
-    //console.log(categoryValue);
-}
 
 function searchSelection(){
   var Selected = document.getElementById("dropdown");
@@ -117,7 +92,7 @@ $.ajax({
           'url': "https://api-gateway-dev.phorest.com/third-party-api-server/api/business/eTC3QY5W3p_HmGHezKfxJw/client?" + Value + "=" + textValue + "&page=0&size=20",
           'type': 'get',
           'headers':  {
-                "Authorization": "Basic " + "Z2xvYmFsL2Nsb3VkQGFwaWV4YW1wbGVzLmNvbTpWTWxSby9laCtYZDhNfmw="
+                "Authorization": "Basic " + "{{ basic_authorization }}"
           },
           'dataType': 'json',
 

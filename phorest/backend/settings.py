@@ -1,4 +1,7 @@
 import os
+import sys
+import config
+from distutils.log import debug
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -10,10 +13,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'uv(^^f5yo&_r(byf)(gunkp*jhlcjl$b%g2u0o_0gj-f!5_pev'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+BASIC_AUTOTHIZATION = config.basic_authorization
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+# STOP CREATING PYC FILES
+sys.dont_write_bytecode = True
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -109,3 +117,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
+                    './phorest/static']

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Phorest - Official Client Search Engine</title>
+
+  <!-- Inporting Bootstrap, Jquery/Ajax  and external stylesheet. -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "./style.css"/>
+</head>
+
+<body>
+
+<div class="jumbotron text-center warning text-dark">
+  <h1><img src="./phorest.png" alt="phorest"></h1>
+  <p size="26px;">Official Client Search Engine</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Pick</h3>
+      <p>Choose a search category</p>
+      <br>
+
+      <div class="dropdown">
+        <select class="dropdown-content" id="dropdown">
+        <option value="firstName">First Name</option>
+        <option value="lastName">Last Name</option>
+        <option value="email">Email</option>
+        <option value="mobile">Phone Number</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <h3>Insert</h3>
+      <p>Type in a the client's first name, last name,</p>
+      <p>email or mobile phone number</p>
+      <div class="form-group">
+  <input type="text" class="form-control" id="usr">
+  <p id="errorText"></p>
+</div>
+    </div>
+    <div class="col-sm-4">
+      <h3>Go!</h3>
+      <p>Click search to see your results</p>
+      <bk>
+      <button type="button" class="btn btn-primary btn-lg" onclick="searchSelection()">Search</button>
+    </div>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped" id="clientTable">
+
+  <div class="footer">
+  <p>Made with &hearts; by Mo</p>
+</div>
+
+<!-- Modal -->
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    Modal content
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Create Voucher</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please input the following information to process your voucher request! For more information on how
+          to use your voucher please visit the <a href="https://www.phorest.com/blog/salon-vouchers/">Phorest</a> website.
+          Thanks a billion!</p>
+
+        <div class="container">
+          <div class="row">
+            <div class="col"><h4> Amount: </h4></div>
+            <div class="col"><input type="text" class="form-control" id="voucherInput"></div>
+            <div class="w-100"></div>
+            <div class="col"><h4> Go! </h4></div>
+          <div class="col"><button type="button" class="btn btn-default" id ="voucherBtn" >Submit for Voucher!</button></div>
+        </div>
+      </div>
+
+        <div class="alert alert-success alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Success!</strong> Your voucher has been created and will be processed shortly.
+        </div>
+
+
+
+        <div class="alert alert-danger alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Sorry!</strong> Your voucher cannot be processed at this time. Please try again later.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div> -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Create Voucher</h3>
+        </div>
+
+        <div class="modal-body">
+          <p>Please input the following information to process your voucher request! For more information on how
+            to use your voucher please visit the <a href="https://www.phorest.com/blog/salon-vouchers/">Phorest</a> website.
+            Thanks a billion!</p>
+
+            <div class="container col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4> Amount: </h4>
+                        <input type="text" class="form-control" id="voucherInput">
+                    </div>
+
+                     <div class="col-md-3">
+
+                     </div>
+
+                     <div class="col-md-3">
+                        <h4> Submit: </h4>
+                         <button type="button" class="btn btn-default" id ="voucherBtn" >Submit for Voucher!</button>
+                      </div>
+                     </div>
+                 </div>
+
+        </div>
+
+
+
+        <div class="modal-footer"></div>
+
+      </div>
+
+    </div>
+  </div>
+<script>
+
+function modelFunctionality() {
+  var voucher = voucherSelection();
+  console.log(voucher);
+  if(voucher == true) {
+    document.getElementByClassName("alert alert-success alert-dismissible").style.display = 'block';
+  }
+  if (voucher == "error") {
+    document.getElementByClassName("alert alert-danger alert-dismissible").style.display = 'block';
+  }
+}
+modelFunctionality();
+
+function searchSelection(){
+  var Selected = document.getElementById("dropdown");
+  var Value = Selected.options[Selected.selectedIndex].value;
+//console.log(Value);
+var textValue = document.getElementById("usr").value;
+//console.log(textValue);
+$.ajax({
+          'async': 'true',
+          'url': "https://api-gateway-dev.phorest.com/third-party-api-server/api/business/eTC3QY5W3p_HmGHezKfxJw/client?" + Value + "=" + textValue + "&page=0&size=20",
+          'type': 'get',
+          'headers':  {
+                "Authorization": "Basic " + "Z2xvYmFsL2Nsb3VkQGFwaWV4YW1wbGVzLmNvbTpWTWxSby9laCtYZDhNfmw="
+          },
+          'dataType': 'json',
+
+      }).done(function (result) {
+        var stringified = JSON.stringify(result);
+        var parsedObj = JSON.parse(stringified);
+        var availableClients = false;
+
+        //console.log(parsedObj);
+        var object = parsedObj._embedded;
+        var clients = object.clients;
+
+        var clientTable = '<table>';
+            clientTable += '<table class="table table-bordered table-striped">';
+            clientTable += '<thead>'
+            clientTable += '<tr>'
+            clientTable += '<th>First Name</th>'
+            clientTable += '<th>Last Name</th>'
+            clientTable += '<th>Email</th>'
+            clientTable += '<th>Phone</th>'
+            clientTable += '<th>Voucher</th>'
+            clientTable += '</tr>'
+            clientTable += '</thead>'
+
+        for (var i = 0; i < clients.length; i++){
+            var fName = clients[i].firstName;
+            var lName = clients[i].lastName;
+            var email = clients[i].email;
+            var phone = clients[i].mobile;
+            var id = clients[i].clientId;
+            console.log(id);
+
+            if(textValue == fName || textValue == lName || textValue == email || textValue == phone){
+                availableClients = true;
+                clientTable += '<tr><td>' + fName + '</td><td>' + lName + '</td>';
+                clientTable += '<td>' + email + '</td><td>' + phone + '</td>';
+                clientTable += '<td><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">'
+                clientTable += 'Create</button></td></tr>';
+                clientTable += '</tbody></table>'
+            }
+        }
+        if (!availableClients) {
+            document.getElementById("errorText").innerHTML = "No clients with this criteria. Try again";
+        }
+        else {
+
+            document.getElementById("clientTable").innerHTML = clientTable;
+        }
+    })
+}
+searchSelection();
+
+
+
+
+function voucherSelection(clientId, balance) {
+  var now = new Date;
+  console.log(now);
+
+  var nowUTC = now.toUTCString();
+
+  var year = now.getFullYear();
+  var month = now.getMonth();
+  var day = now.getDate();
+
+  var nextYear = new Date(year + 1, month, day);
+  var nextYearUTC = nextYear.toUTCString();
+
+  console.log(nowUTC);
+
+
+  $.ajax({
+            url: "https://api-gateway-dev.phorest.com/third-party-api-server/api/business/eTC3QY5W3p_HmGHezKfxJw/voucher",
+            type: 'Post',
+            headers:  {
+                  "Authorization": "Basic " + "Z2xvYmFsL2Nsb3VkQGFwaWV4YW1wbGVzLmNvbTpWTWxSby9laCtYZDhNfmw="
+            },
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data : JSON.stringify({
+                clientId: clientId,
+                creatingBranchId: "SE-J0emUgQnya14mOGdQS",
+                expiryDate: now,
+                issueDate: nextYear,
+                links: [ { "href": "string", "rel": "string", "templated": true } ],
+                originalBalance: balance,
+              }),
+              success: function(reponse) {
+                console.log(response.getAllResponseHeaders());
+
+              },
+              error: function(error) {
+                console.log(error);
+
+              }
+});
+}
+voucherSelection("Rry62Or7yawsdNUf17i_uA", '30');
+
+</script>
+
+
+
+
+</body>
+</html>
