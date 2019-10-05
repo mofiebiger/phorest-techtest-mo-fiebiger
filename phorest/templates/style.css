@@ -103,3 +103,9 @@ h3 {
 #voucherInput {
   width: 200px;
 }
+
+#voucherResults {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
