@@ -1,6 +1,15 @@
 # phorest-techtest-mo-fiebiger
-https://travis-ci.org/mofiebiger/phorest-techtest-mo-fiebiger.svg?branch=master
-React:
-npx create-react-app my-app
-cd my-app
-npm start
+
+## Hello World and Phorest Team!
+
+I would like to take a bit about my process over the last few days with generating the Phorest Client Search Engine
+web application.
+
+
+### What I intended
+
+### Road Blocks
+
+### Final Product
+
+### Future Improvements
