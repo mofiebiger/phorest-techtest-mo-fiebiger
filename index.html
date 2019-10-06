@@ -18,11 +18,13 @@
 
 <body>
 
+  <!-- Header of Index Page -->
   <div class="jumbotron text-center warning text-dark">
     <h1><img src="static/images/phorest.png" alt="phorest"></h1>
     <p>Official Client Search Engine</p>
   </div>
 
+  <!-- Container One - dropdown box -->
   <div class="container" id="indexContainer">
     <div class="row">
       <div class="col-sm-4">
@@ -40,6 +42,7 @@
         </div>
       </div>
 
+      <!-- Container Two - input text box -->
       <div class="col-sm-4">
         <h3>Insert</h3>
         <p>Type in a the client's first name, last name,</p>
@@ -47,10 +50,13 @@
 
         <div class="form-group">
           <input type="text" class="form-control" id="userInput">
+
+          <!-- Error text is displayed in middle container - if key/value do not match -->
           <p id="errorText"></p>
         </div>
       </div>
 
+      <!-- Container Three - display search results button -->
       <div class="col-sm-4">
         <h3>Go!</h3>
         <p>Click search to see your results</p>
@@ -61,8 +67,10 @@
     </div>
   </div>
 
+  <!-- The Client Table which returns client results  -->
   <table class="table table-bordered table-striped" id="clientTable">
 
+  <!-- Customized Footer -->
   <div class="footer">
     <p>Made with &hearts; by Mo</p>
   </div>
@@ -70,7 +78,7 @@
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
-      <!-- Modal content-->
+      <!-- Modal popup for create voucher -->
       <div class="modal-content">
 
         <div class="modal-header">
@@ -85,6 +93,8 @@
 
             <div class="container col-md-12">
               <div class="row">
+
+                <!-- Modal Container One - input text box for price of voucher -->
                 <div class="col-md-3">
                   <h4> Amount: </h4>
                   <input type="text" class="form-control" id="voucherInput">
@@ -92,6 +102,7 @@
 
                 <div class="col-md-3"></div>
 
+                <!-- Modal Container Two- create voucher button -->
                 <div class="col-md-3">
                   <h4> Submit: </h4>
                   <button type="button" class="btn btn-default" id ="voucherBtn" onclick="voucherSelection()">Create Voucher</button>
@@ -99,6 +110,7 @@
               </div>
             </div>
 
+            <!-- Display voucher results (both success and fail results) -->
             <div id="voucherResults"></div>
           </div>
 
