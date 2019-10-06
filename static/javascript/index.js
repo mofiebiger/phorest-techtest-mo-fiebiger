@@ -79,6 +79,8 @@ function searchSelection(){
           }
       })
 } //searchSelection Ends
+
+// this is added to test in Node.js
 module.exports = searchSelection;
 
 // voucherSelection takes the input values from the returned clientId from the previous method
